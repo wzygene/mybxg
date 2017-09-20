@@ -28,12 +28,11 @@ define(['jquery','template','cookie'], function ($,template) {
 	}
 
 
-	// 填充头像信息
-	var loginInfo = $.cookie('loginInfo');
+	// 填充头像信息 
+	var loginInfo = $.cookie('loginfo');
 	loginInfo = loginInfo && JSON.parse(loginInfo);
 	var tpl = '<div class="avatar img-circle"><img src="{{tc_avatar}}"></div><h4>{{tc_name}}</h4>';
 	var html = template.render(tpl,loginInfo);
-	console.log(html);
 	$('.aside .profile').html(html);
 	// $('.aside .profile img').attr('src', loginInfo.tc_avatar);
 	// $('.aside .profile h4').html(loginInfo.tc_name);
