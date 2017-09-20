@@ -118,33 +118,31 @@
         </div>
     </div>
 
-    <script text="text/html" id="teacherTpl">
-        {{each list item index}}
-            <tr>
-                <td>{{index+1}}</td>
-                <td>{{item.tc_name}}</td>
-                <td>{{item.tc_roster}}</td>
-                <td>{{item.tc_join_date}}</td>
-                <td>
-                    {{if item.tc_gender == 0}}
-                        男
-                    {{else}}
-                        女
-                    {{/if}}    
-                </td>
-                <td>{{item.tc_cellphone}}</td>
-                <td>
-                    <a href="#teacherModal" data-toggle="modal" class="btn btn-info btn-xs">查 看</a>
-                    <a href="./teacher_add.html" class="btn btn-info btn-xs">编 辑</a>
-                    <a href="javascript::" class="btn btn-warning btn-xs">注 销</a>
-                </td>
-            </tr>
+
+    <script type='text/template' id='teacherTpl'>
+        {{each list as item index }}
+        <tr>
+            <td>{{index+1}}</td>
+            <td>{{item.tc_name}}</td>
+            <td>{{item.tc_roster}}</td>
+            <td>{{item.tc_join_date}}</td>
+            <td>
+                {{if item.tc_gender == 0}} 男 {{else}} 女 {{/if}}
+            </td>
+            <td>{{item.tc_cellphone}}</td>
+            <td>
+                <a href="#teacherModal" data-toggle="modal" class="btn btn-info btn-xs">查 看</a>
+                <a href="./teacher_add.html" class="btn btn-info btn-xs">编 辑</a>
+                <a href="javascript::" class="btn btn-warning btn-xs">注 销</a>
+            </td>
+        </tr>
         {{/each}}
     </script>
-
+    
     <?php include('./view/common/script.html'); ?>
     <script>
         require(['teacherlist']);
     </script>
 </body>
+
 </html>
