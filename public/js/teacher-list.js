@@ -1,4 +1,4 @@
-define(['jquery', 'template'], function ($, template) {
+define(['jquery', 'template','bootstrap'], function ($, template) {
     // 调用后台接口，获取所有数据
     $.ajax({
         type: 'get',
@@ -11,7 +11,6 @@ define(['jquery', 'template'], function ($, template) {
             
             var e_d = $('.enable-or-disable');
             $.each(e_d,function (index,item){
-                console.log(item);
                 var status = item.parentNode.getAttribute('tc-status');
                 // 根据讲师状态属性，渲染启用/注销
                 if(status == 1){
@@ -47,6 +46,23 @@ define(['jquery', 'template'], function ($, template) {
             });
 
             // 查看讲师
+            $('.preview').on('click',function (){
+                var self = $(this);
+                var id = self.parent().attr('tc-id');
+                var model = $('#teacherModal');
+                $.ajax({
+                    type: 'get',
+                    url: '/api/teacher/view',
+                    dataType: 'json',
+                    data: {tc_id:id},
+                    success: function (data){
+                        var html = template('modelTpl',data.result);
+                        model.find('table').html(html);
+                        model.modal();
+                    }
+                })
+            })
+
         }
     })
 });
