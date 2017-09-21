@@ -32,7 +32,6 @@ define(['jquery', 'template','bootstrap'], function ($, template) {
                     data: {tc_id: tc_id,tc_status: tc_status},
                     dataType: 'json',
                     success: function (data){
-                        console.log(data.result.tc_status,tc_status);
                         if(data.code == 200){
                             if(tc_status == 0){
                                 self.text('注 销');
@@ -61,7 +60,7 @@ define(['jquery', 'template','bootstrap'], function ($, template) {
                         model.modal();
                     }
                 })
-            })
+            });
 
         }
     })
