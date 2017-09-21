@@ -26,34 +26,35 @@
     <script type='text/html' id='formTpl'>
         <ol class="breadcrumb">
             <li><a href="/teacher/list">讲师管理</a></li>
-            <li class="active">讲师添加</li>
+            <li class="active">{{if tc_id}}编辑讲师{{else}}添加讲师{{/if}}</li>
         </ol>
         <div class="teacher-add">
-            <form action="" class="form-horizontal col-xs-offset-2">
+            <form id="formBtn" class="form-horizontal col-xs-offset-2">
                 <div class="form-group">
+                    <input type="hidden" name="tc_id" value="{{tc_id}}">
                     <label for="" class="col-xs-3 control-label">姓名</label>
                     <div class="col-xs-4">
-                        <input type="text" class="form-control input-sm" {{if tc_id}}value="{{tc_name}}"{{/if}} placeholder="讲师名称">
+                        <input type="text" name="tc_name" class="form-control input-sm" {{if tc_id}}value="{{tc_name}}"{{/if}} placeholder="讲师名称">
                     </div>
                 </div>
                 {{if !tc_id}}
                 <div class="form-group">
                     <label for="" class="col-xs-3 control-label">密码</label>
                     <div class="col-xs-4">
-                        <input type="password" class="form-control input-sm">
+                        <input type="password" name="tc_pass" class="form-control input-sm">
                     </div>
                 </div>
                 {{/if}}
                 <div class="form-group">
                     <label for="" class="col-xs-3 control-label">入职时间</label>
                     <div class="col-xs-4">
-                        <input type="text" class="form-control input-sm" {{if tc_id}}value="{{tc_join_date}}"{{/if}}>
+                        <input type="text" name="tc_join_date" class="form-control input-sm" {{if tc_id}}value="{{tc_join_date}}"{{/if}}>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="" class="col-xs-3 control-label">类型</label>
                     <div class="col-xs-2">
-                        <select name="" class="form-control input-sm">
+                        <select name="tc_type" class="form-control input-sm">
                             <option value="1" {{if tc_type == 1}}selected{{/if}}>讲师</option>
                             <option value="0" {{if tc_type == 0}}selected{{/if}}>管理员</option>
                         </select>
@@ -72,7 +73,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-xs-7">
-                        <a href="./advert_list.html" class="btn btn-success btn-sm pull-right"> 添 加 </a>
+                        <input class="btn btn-success btn-sm pull-right" id="teacherBtn" type="button" value="提交">
                     </div>                          
                 </div>
             </form>

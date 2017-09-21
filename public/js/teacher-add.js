@@ -11,6 +11,7 @@ define(['jquery','template','util'],function ($,template,util){
             success: function (data){
                 var html = template('formTpl',data.result);
                 $('#edit_add').html(html);
+                submitForm('/api/teacher/update');
             }
         });
     }
@@ -18,5 +19,23 @@ define(['jquery','template','util'],function ($,template,util){
         // 添加操作
         var html = template('formTpl');
         $('#edit_add').html(html);
+        submitForm('/api/teacher/add');
+        
+    }
+    function submitForm(url){
+        $('#teacherBtn').click(function (){
+            $.ajax({
+                type: 'post',
+                url: url,
+                data: $('#formBtn').serialize(),
+                dataType: 'json',
+                success: function (data){
+                    console.log($('#formBtn').serialize());
+                    if(data.code == 200){
+                        location.href = '/teacher/list';
+                    }
+                }
+            })
+        });
     }
 });
