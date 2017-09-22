@@ -1,4 +1,4 @@
-define(['jquery','template','uploadify'],function ($,template){
+define(['jquery','template','uploadify','region'],function ($,template){
     //  调用接口获取所有的个人信息
     $.ajax({
         type: 'get',
@@ -21,7 +21,12 @@ define(['jquery','template','uploadify'],function ($,template){
                     console.log(obj);
                     $('.preview img').attr('src',obj.result.path);
                 }
-            })
+            });
+            // 处理省市区三级联动
+            console.log($('#pcd'));
+            $('#pcd').region({
+                url : '/public/assets/jquery-region/region.json'
+            });
         }
     })
 })
