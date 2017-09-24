@@ -1,7 +1,7 @@
-define(['jquery','template','cookie'], function ($,template) {
+define(['jquery', 'template', 'cookie'], function ($, template) {
 	// NProgress.start();
 	// NProgress.done();
-	
+
 	// 控制左侧菜单的折叠和展开
 	$('.navs ul').prev('a').on('click', function () {
 		$(this).next().slideToggle();
@@ -15,6 +15,7 @@ define(['jquery','template','cookie'], function ($,template) {
 			dataType: 'json',
 			success: function (data) {
 				if (data.code == 200) {
+					console.log(123);
 					location.href = 'main/login';
 				}
 			}
@@ -32,7 +33,7 @@ define(['jquery','template','cookie'], function ($,template) {
 	var loginInfo = $.cookie('loginfo');
 	loginInfo = loginInfo && JSON.parse(loginInfo);
 	var tpl = '<div class="avatar img-circle"><img src="{{tc_avatar}}"></div><h4>{{tc_name}}</h4>';
-	var html = template.render(tpl,loginInfo);
+	var html = template.render(tpl, loginInfo);
 	$('.aside .profile').html(html);
 	// $('.aside .profile img').attr('src', loginInfo.tc_avatar);
 	// $('.aside .profile h4').html(loginInfo.tc_name);

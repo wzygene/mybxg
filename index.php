@@ -3,14 +3,6 @@
   // 这个文件就是根据 url 返回相应的页面 -----  这就是路由 （页面中的 php 代码因为有了这个文件才可以执行）
   header('content-type:text/html;charset=utf8');
 
-  // echo '<div>主页内容</div>';
-
-  // 根据 url 中的特征判断用户想访问哪个页面
-
-  // include('./view/main/login.html');
-  
-  // var_dump($_SERVER);
-
   // 默认的目录名称
   $dir = 'main';
   // 默认的文件名称

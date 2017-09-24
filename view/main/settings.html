@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>学IT - 后台管理系统</title>
-    <?php include('./view/common/style.html'); ?> 
+    <?php include('./view/common/style.html'); ?>
+    <link rel="stylesheet" type="text/css" href="/public/assets/bootstrap-datepicker/css/bootstrap-datepicker.css">
 </head>
+
 <body>
-    
+
     <!-- 侧边栏 -->
-    <?php include('./view/common/aside.html'); ?> 
+    <?php include('./view/common/aside.html'); ?>
     <!-- 主体 -->
     <div class="main">
         <div class="container-fluid">
             <!-- 头部 -->
-            <?php include('./view/common/header.html'); ?> 
+            <?php include('./view/common/header.html'); ?>
             <!-- 讲师资料 -->
             <div class="body teacher-profile">
                 <div class="settings" id="settingsInfo">
@@ -35,13 +38,11 @@
                 <label for="" class="col-xs-3 control-label">头像</label>
                 <div class="col-xs-2 preview">
                     {{if tc_avatar}}
-                    <img src="{{tc_avatar}}">
-                    {{else}}
-                    <img src="/public/images/default.png">
-                    {{/if}}
+                    <img src="{{tc_avatar}}"> {{else}}
+                    <img src="/public/images/default.png"> {{/if}}
                     <input type="file" id="upfile">
                     <div class="cover">
-                        <i class="fa fa-upload"></i>                  
+                        <i class="fa fa-upload"></i>
                     </div>
                 </div>
             </div>
@@ -65,7 +66,8 @@
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">出生日期</label>
                 <div class="col-xs-5">
-                    <input name="tc_birthday" value="{{tc_birthday}}" type="text" class="form-control input-sm">
+                    <input data-provide="datepicker" data-date-language="zh-CN" data-date-format="yyyy-mm-dd" name="tc_birthday" value="{{tc_birthday}}"
+                        type="text" class="form-control input-sm">
                 </div>
             </div>
             <div class="form-group">
@@ -97,13 +99,14 @@
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">入职日期</label>
                 <div class="col-xs-5">
-                    <input name="tc_join_date" value="{{tc_join_date}}" type="text" class="form-control input-sm">
+                    <input data-provide="datepicker" data-date-language="zh-CN" data-date-format="yyyy-mm-dd" name="tc_join_date" value="{{tc_join_date}}"
+                        type="text" class="form-control input-sm">
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">个人介绍</label>
                 <div class="col-xs-5 ckeditor">
-                    <textarea name="tc_introduce" rows="15" class="form-control input-sm">{{tc_introduce}}</textarea>
+                    <textarea id="editor" name="tc_introduce" rows="15" class="form-control input-sm">{{tc_introduce}}</textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -114,9 +117,10 @@
             </div>
         </form>
     </script>
-    <?php include('./view/common/script.html'); ?> 
+    <?php include('./view/common/script.html'); ?>
     <script>
         require(['settings']);
     </script>
 </body>
+
 </html>
