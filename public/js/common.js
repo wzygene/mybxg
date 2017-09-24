@@ -11,12 +11,12 @@ define(['jquery', 'template', 'cookie'], function ($, template) {
 	$('#logoutBtn').click(function () {
 		$.ajax({
 			type: 'post',
-			url: 'api/logout',
+			url: '/api/logout',
 			dataType: 'json',
 			success: function (data) {
 				if (data.code == 200) {
 					console.log(123);
-					location.href = 'main/login';
+					location.href = '/login';
 				}
 			}
 		});
@@ -24,8 +24,8 @@ define(['jquery', 'template', 'cookie'], function ($, template) {
 
 	// 验证用户是否登录了
 	var flag = $.cookie('PHPSESSID');
-	if (!flag && location.pathname != '/main/login') {
-		location.href = 'main/login';
+	if (!flag && location.pathname != '/login') {
+		location.href = '/login';
 	}
 
 
@@ -35,6 +35,4 @@ define(['jquery', 'template', 'cookie'], function ($, template) {
 	var tpl = '<div class="avatar img-circle"><img src="{{tc_avatar}}"></div><h4>{{tc_name}}</h4>';
 	var html = template.render(tpl, loginInfo);
 	$('.aside .profile').html(html);
-	// $('.aside .profile img').attr('src', loginInfo.tc_avatar);
-	// $('.aside .profile h4').html(loginInfo.tc_name);
 })

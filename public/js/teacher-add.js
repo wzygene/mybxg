@@ -34,7 +34,6 @@ define(['jquery','template','util','datepicker','language','validate','form'],fu
                     url: url,
                     dataType: 'json',
                     success: function (data){
-                        console.log(data);
                         if (data.code == 200) {
                             location.href = '/teacher/list';
                         }
