@@ -14,6 +14,7 @@ require.config({
         ckeditor: 'ckeditor/ckeditor',
         region: 'jquery-region/jquery.region',
         util: '../js/util',
+        index: '../js/index',
         common: '../js/common',
         login: '../js/login',
         teacherlist: '../js/teacher-list',

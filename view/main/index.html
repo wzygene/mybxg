@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>学IT - 后台管理系统</title>
     <?php include('./view/common/style.html'); ?>
 </head>
+
 <body>
-    
+
     <!-- 侧边栏 -->
     <?php include('./view/common/aside.html'); ?>
     <!-- 主体 -->
     <div class="main">
         <div class="container-fluid">
             <!-- 头部 -->
-            <?php include('./view/common/header.html'); ?>       
+            <?php include('./view/common/header.html'); ?>
             <!-- 个人资料 -->
             <div class="body teacher-profile">
                 <div class="profile">
@@ -54,10 +56,12 @@
             </div>
         </div>
     </div>
-    
+
     <?php include('./view/common/script.html'); ?>
     <script>
-
+        require(['index'])
+    </script>
+    <script>
         // // 基于准备好的dom，初始化echarts实例
         // var myChart = echarts.init(document.getElementById('main'));
 
@@ -83,7 +87,7 @@
 
         // // 使用刚指定的配置项和数据显示图表。
         // myChart.setOption(option);
-
     </script>
 </body>
+
 </html>

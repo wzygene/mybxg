@@ -1,4 +1,6 @@
-define(['jquery', 'template','bootstrap'], function ($, template) {
+define(['jquery', 'template', 'util', 'bootstrap'], function ($, template, util) {
+    // 设置导航栏选中
+    util.setMenu(location.pathname);
     // 调用后台接口，获取所有数据
     $.ajax({
         type: 'get',
@@ -6,22 +8,22 @@ define(['jquery', 'template','bootstrap'], function ($, template) {
         dataType: 'json',
         success: function (data) {
             // 解析数据，渲染页面
-            var html = template('teacherTpl',{list:data.result});
+            var html = template('teacherTpl', { list: data.result });
             $('#teacherInfo').html(html);
-            
+
             var e_d = $('.enable-or-disable');
-            $.each(e_d,function (index,item){
+            $.each(e_d, function (index, item) {
                 var status = item.parentNode.getAttribute('tc-status');
                 // 根据讲师状态属性，渲染启用/注销
-                if(status == 1){
+                if (status == 1) {
                     item.innerHTML = '注 销';
-                }else {
+                } else {
                     item.innerHTML = '启 用';
                 }
             });
-            
+
             // 注销和启用讲师和管理功能，因为ajax是异步的，所以，绑定事件要写在 success回调函数中
-            $('.enable-or-disable').on('click',function (){
+            $('.enable-or-disable').on('click', function () {
                 var self = $(this);
                 var parent = self.closest('td');
                 var tc_id = parent.attr('tc-id');
@@ -29,23 +31,23 @@ define(['jquery', 'template','bootstrap'], function ($, template) {
                 $.ajax({
                     type: 'post',
                     url: '/api/teacher/handle',
-                    data: {tc_id: tc_id,tc_status: tc_status},
+                    data: { tc_id: tc_id, tc_status: tc_status },
                     dataType: 'json',
-                    success: function (data){
-                        if(data.code == 200){
-                            if(tc_status == 0){
+                    success: function (data) {
+                        if (data.code == 200) {
+                            if (tc_status == 0) {
                                 self.text('注 销');
-                            }else {
+                            } else {
                                 self.text('启 用');
                             }
                         }
-                        parent.attr('tc-status',data.result.tc_status);
+                        parent.attr('tc-status', data.result.tc_status);
                     }
                 })
             });
 
             // 查看讲师
-            $('.preview').on('click',function (){
+            $('.preview').on('click', function () {
                 var self = $(this);
                 var id = self.parent().attr('tc-id');
                 var model = $('#teacherModal');
@@ -53,9 +55,9 @@ define(['jquery', 'template','bootstrap'], function ($, template) {
                     type: 'get',
                     url: '/api/teacher/view',
                     dataType: 'json',
-                    data: {tc_id:id},
-                    success: function (data){
-                        var html = template('modelTpl',data.result);
+                    data: { tc_id: id },
+                    success: function (data) {
+                        var html = template('modelTpl', data.result);
                         model.find('table').html(html);
                         model.modal();
                     }
