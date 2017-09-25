@@ -1,6 +1,6 @@
 define(['jquery'],function ($){
     return {
-        query_param: function (){
+        query_param: function (param){
             var location_search = location.search.substr(1);
             // console.log(location_search);
             var value = null;
@@ -8,7 +8,7 @@ define(['jquery'],function ($){
                 var keyInfo = location_search.split('&');
                 $.each(keyInfo,function (index,item){
                     var kv = item.split('=');
-                    if(kv[0] == 'tc_id'){
+                    if(kv[0] == param){
                         value = kv[1];
                         return false;   // 终止each循环
                     }
@@ -18,7 +18,7 @@ define(['jquery'],function ($){
             return value;
         },
         setMenu: function (path){
-            $('.aside .navs a[href="'+path+'"]').addClass('active');
+            $('.aside .navs a[href="'+path+'"]').addClass('active').closest('ul').show();
         }
     }
 });
