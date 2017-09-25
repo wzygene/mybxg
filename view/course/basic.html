@@ -69,21 +69,22 @@
                     <div class="form-group">
                         <label for="" class="col-xs-2 control-label">标题</label>
                         <div class="col-xs-8">
-                            <input type="text" class="form-control input-sm" value="{{cs_name}}">
+                            <input type="text" name="cs_name" class="form-control input-sm" value="{{cs_name}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="" class="col-xs-2 control-label">课程描述</label>
                         <div class="col-xs-8 ckeditor">
-                            <textarea id="description" name="" rows="15" class="form-control input-sm"></textarea>
+                            <textarea id="description" name="cs_brief" rows="15" class="form-control input-sm"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="" class="col-xs-2 control-label">讲师</label>
                         <div class="col-xs-8">
-                            <select name="" class="form-control input-sm">
+                            <select name="cs_tc_id" class="form-control input-sm">
+                                <option value="0">请选择讲师...</option>
                                 {{each teacher item i}}
-                                <option value="">{{item.tc_name}}</option>
+                                <option value="{{item.tc_id}}">{{item.tc_name}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -96,7 +97,7 @@
                                 <option value="{{item.cg_id}}">{{item.cg_name}}</option>
                                 {{/each}}
                             </select>
-                            <select name="" class="form-control input-sm" id="secondType">
+                            <select name="cs_cg_id" class="form-control input-sm" id="secondType">
                                     <option value="">请选择二级分类...</option>
                             </select>
                         </div>
@@ -104,13 +105,13 @@
                     <div class="form-group">
                         <label for="" class="col-xs-2 control-label">标签</label>
                         <div class="col-xs-8">
-                            <input type="text" class="form-control input-sm">
+                            <input name="cs_tags" type="text" class="form-control input-sm">
                             <p class="help-block">将会应用于按标签搜索课程、相关课程的提取等</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-10">
-                            <a href="./course_add_step2.html" class="btn btn-success btn-sm pull-right">保 存</a>
+                            <input type="submit" class="btn btn-success btn-sm pull-right" value="保 存">
                         </div>                          
                     </div>
                 </form>

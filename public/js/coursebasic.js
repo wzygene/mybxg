@@ -24,14 +24,12 @@ define(['jquery','template','util','ckeditor','validate','form'],function ($,tem
             // 渲染二级目录
             $('#category').change(function (){
                 var pid = $(this).val();
-                console.log(pid);
                 $.ajax({
                     type: 'get',
                     url: '/api/category/child',
                     dataType: 'json',
                     data: {cg_id: pid},
                     success: function (data){
-                        console.log(data);
                         var tpl = '<option value="">请选择二级分类...</option>'
                         +'{{each list}}<option value="{{$value.cg_id}}">{{$value.cg_name}}</option>'
                         +'{{/each}}';
@@ -48,6 +46,21 @@ define(['jquery','template','util','ckeditor','validate','form'],function ($,tem
                     { name: 'insert', groups: [ 'insert' ] },
                     { name: 'forms', groups: [ 'forms' ] }
                 ]
+            });
+            // 处理表单提交
+            $('#basicForm').validate({
+                sendForm: false,
+                valid: function (){
+                    $(this).ajaxSubmit({
+                        type: 'post',
+                        url: '/api/course/update/basic',
+                        dateType: 'json',
+                        data: {cs_id: csId},
+                        success: function (data){
+                            location.href = '/course/picture?cs_id='+data.result.cs_id;
+                        }
+                    });
+                }
             });
         }
     })
