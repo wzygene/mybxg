@@ -18,7 +18,6 @@ define(['jquery','template','util','uploadify','jcrop','form'],function ($,templ
             var img = $('.preview img');
             var nowCrop = null;    // 保证裁切实例的唯一性
             
-            
             // 处理封面上传操作
             $('#myFile').uploadify({
                 width : 80,
@@ -67,6 +66,11 @@ define(['jquery','template','util','uploadify','jcrop','form'],function ($,templ
                 img.Jcrop({
                     aspectRatio: 2
                 },function (){
+                    nowCrop && nowCrop.destroy();    // 销毁当前是实例（此方法由插件本身提供）
+                    nowCrop = this
+
+                    // 先清空缩略图
+                    $('.thumb').html('');
                     // 显示缩略图
                     this.initComponent('Thumbnailer',{width: 240,height: 120,mythumb: '.thumb'});
 
