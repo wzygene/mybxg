@@ -1,4 +1,4 @@
-define(['jquery','cookie'], function ($) {
+define(['jquery','cookie','state'], function ($) {
     $('#loginForm').on('submit', function () {
         var formData = $(this).serialize();
         $.ajax({

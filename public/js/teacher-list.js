@@ -1,4 +1,4 @@
-define(['jquery', 'template', 'util', 'bootstrap'], function ($, template, util) {
+define(['jquery', 'template', 'util', 'bootstrap','state'], function ($, template, util) {
     // 设置导航栏选中
     util.setMenu(location.pathname);
     // 调用后台接口，获取所有数据

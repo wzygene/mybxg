@@ -1,4 +1,4 @@
-define(['jquery','template','util'],function ($,template,util){
+define(['jquery','template','util','state'],function ($,template,util){
     // 设置导航栏选中
     util.setMenu(location.pathname);
 
