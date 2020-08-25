@@ -6,6 +6,7 @@ define(['jquery'],function ($){
     $(document).ajaxStop(function (){
         // 隐藏遮罩层
         setTimeout(function() {
+            console.log(333, 444);
             $('.overlay').hide();
         }, 500);
     });
