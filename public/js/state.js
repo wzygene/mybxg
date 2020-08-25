@@ -1,3 +1,5 @@
+const FRUIT = '苹果';
+
 define(['jquery'],function ($){
     $(document).ajaxStart(function (){
         // 显示遮罩层
